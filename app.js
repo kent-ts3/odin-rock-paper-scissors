@@ -1,32 +1,36 @@
 const choices = ["Rock", "Paper", "Scissors"];
-const getPlayerChoice = prompt("Rock, Paper, or Scissors?")
-const playerChoice = `${getPlayerChoice[0].toUpperCase()}${getPlayerChoice.slice(1).toLowerCase()}`
-
+const getPlayerChoice = prompt("Rock, Paper, or Scissors?");
+const playerChoice = `${getPlayerChoice[0].toUpperCase()}${getPlayerChoice
+  .slice(1)
+  .toLowerCase()}`;
 
 function getComputerChoice() {
-    const position = Math.floor(Math.random() * 3);
-    return choices[position];
+  const position = Math.floor(Math.random() * 3);
+  return choices[position];
 }
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        return "Draw"
-    } else if (playerSelection === "Rock" && computerSelection === "Paper") {
-        return "Lose"
-    } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        return "Win"
-    } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
-        return "Lose"
-    } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        return "Win"
-    } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
-        return "Lose"
-    } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        return "Win"
-    } 
+    const win = `You Win! ${playerSelection} beats ${computerSelection}`
+    const lose = `You Lose! ${computerSelection} beats ${playerSelection}`
+    
+  if (playerSelection === computerSelection) {
+    return "It's a Draw.";
+  } else if (
+    (playerSelection === "Rock" && computerSelection === "Paper") ||
+    (playerSelection === "Paper" && computerSelection === "Scissors") ||
+    (playerSelection === "Scissors" && computerSelection === "Rock")
+  ) {
+    return lose;
+  } else if (
+    (playerSelection === "Rock" && computerSelection === "Scissors") ||
+    (playerSelection === "Paper" && computerSelection === "Rock") ||
+    (playerSelection === "Scissors" && computerSelection === "Paper")
+  ) {
+    return win;
+  }
 }
 
-console.log(playRound(playerChoice, getComputerChoice()))
+console.log(playRound(playerChoice, getComputerChoice()));
 
 // Create function called getComputerChoice that selects a choice
 // 1. Create an array variable that contains the choices Rock, Paper, and Scissors
